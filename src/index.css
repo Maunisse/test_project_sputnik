@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.img_random {
+  /* background: url(https://source.unsplash.com/random) no-repeat;
+  background-size: 100%; */
+  width: 500px;
+  height: auto;
+}
