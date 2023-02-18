@@ -1,0 +1,118 @@
+.container .unsplash {
+    display: flex;
+    justify-content: center;
+}
+
+.input_width {
+    width: min-content;
+}
+
+input {
+    border-radius: 100px;
+    padding: 10px 20px;
+}
+
+.div_img_random {
+    max-width: 700px;
+    min-height: 700px;
+    max-height: 700px;
+    margin: 0 30px;
+    object-fit: cover;
+    overflow: hidden;
+    border: 10px solid rgb(102, 193, 230);
+}
+
+.img_random {
+    max-width: 100%;
+    min-height: inherit;
+    object-fit: cover;
+}
+
+.img_tofind_block {
+    display: block;
+    background: #ABEEF4;
+    margin: -700px 0 0 0;
+    animation: ani 1s forwards;
+}
+
+@keyframes ani {
+    0% {
+        margin: 0px 0 0 0;
+    }
+
+    100% {
+        margin: -700px 0 0 0;
+    }
+}
+
+.img_tofind_none {
+    display: none;
+}
+
+.column_gap {
+    column-count: 3;
+}
+
+.gallery_item {
+    display: inline-block;
+    margin: 5px 0;
+    position: relative;
+}
+
+.column_gap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.val_p {
+    position: absolute;
+    margin: -95px 10px 0px 10px;
+    z-index: 99;
+}
+
+.font_gradient {
+    /* position: absolute;
+    z-index: 100; */
+    /* margin: -95px 10px 0px 10px; */
+    /* background: linear-gradient(#000000 33%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 20px;
+    max-height: 80px;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+
+.font_gradient::before {
+    content: '';
+    position: absolute;
+    display: block;
+    z-index: 100;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(rgba(255, 255, 255, 0) 33%, rgba(255, 255, 255, 0.7) 90%, rgba(255, 255, 255, 0.7) 100%);
+    margin: -95px 0px 0px 0px;
+    border-radius: 20px;
+    left: 0;
+    bottom: 0;
+}
+
+.val_p:hover {
+    height: min-content;
+    transition: height 1s ease-in;
+}
+
+.font_gradient:hover {
+    -webkit-text-fill-color: #000000;
+    max-height: 700px;
+    transition: max-height 1s ease-in;
+}
+
+@media (max-width: 768px) {
+    .column_gap {
+        column-count: 2;
+    }
+}

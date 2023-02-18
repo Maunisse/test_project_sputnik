@@ -1,12 +1,14 @@
 // импортируем реакт userState
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import style from './unsplash.module.css'
 
 
-const Unsplash = () => {
+const Unsplash = (props) => {
   //переменные для стейтов
+  const [active, isActive] = useState(false)
   const [image, image_set] = useState("")
   const [result, set_for_result] = useState([])
-  const [result_random, set_for_result_random] = useState([])
+
 
   //пишем асинхрон для вывода изображений по api
   const async_unsplash = async () => {
@@ -20,13 +22,9 @@ const Unsplash = () => {
     set_for_result(result_img)
   }
 
-  // ставим загрушку [] чтобы поиск не срабатывал на автомате
-  useEffect(() => {
-    async_unsplash()
-  }, [])
-
   //переменная функция для кнопки поиска
   const To_find = () => {
+    isActive(!active)
     async_unsplash()
     image_set("")
   };
@@ -34,46 +32,58 @@ const Unsplash = () => {
   //тело
   return (
     <section>
-      <div className="">
+      <div className='container center align_center'>
         <div className="">
-          <div className="">
-            <input
-              className=""
-              type="text"
-              placeholder="Поиск..."
-              value={image}
-              onChange={(e) => image_set(e.target.value)}
-            />
-            <button
-              type="submit"
-              onClick={To_find}
-              className=""
-            >
-              Search
-            </button>
+          <input
+            className=""
+            type="text"
+            placeholder="Поиск..."
+            value={image}
+            onChange={(e) => image_set(e.target.value)}
+          />
+          <button
+            type="submit"
+            onClick={To_find}
+            className=""
+          >
+            Search
+          </button>
+        </div>
+
+        {/*рандом фото*/}
+        <div className={style.div_img_random}>
+          <img className={style.img_random} src="https://source.unsplash.com/random" alt="img_random" />
+        </div>
+
+        {/*плитка сёрч*/}
+        <div className={active ? style.img_tofind_block : [style.img_tofind_block, style.img_tofind_none]}>
+          <div className={style.column_gap}>
+            {
+              result.map((val) => {
+                return (
+                  <div className={[style.gallery_container]}>
+                    <div className={style.gallery_item}>
+                      <img
+                        key={val.id}
+                        className=""
+                        src={val.urls.small}
+                        alt="val.alt_description"
+                      />
+                      <div className={style.val_p}>
+                        <p className={style.font_gradient}>
+                          <b>Автор: </b>{val.user.username}
+                          <br />
+                          <b>Описание: </b>{val.description}
+                          <br /><br />
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })
+            }
           </div>
         </div>
-      </div>
-
-      <div className="">
-        <img className="img_random" src="https://source.unsplash.com/random" />
-      </div>
-
-      <div className="">
-        {result.map((val) => {
-          return (
-            <>
-              <img
-                key={val.id}
-                className=""
-                src={val.urls.small}
-                alt="val.alt_description"
-              />
-              <p>{val.description}</p>
-              <p>{val.user.username}</p>
-            </>
-          )
-        })}
       </div>
     </section>
   )

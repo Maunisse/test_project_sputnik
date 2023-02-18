@@ -1,10 +1,46 @@
-body {
+* {
+  padding: 0;
+  text-decoration: none;
+  color: black;
+  box-sizing: border-box;
+}
+
+body,
+a,
+p,
+span {
   margin: 0;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url(../public/img/3d-gray-texture-3d-geometric-background-triangles-3d-texturаe-creative-3d-background.jpg) no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.align_center {
+  align-items: center;
+}
+
+section {
+  padding-top: 60px;
 }
 
 code {
@@ -12,9 +48,15 @@ code {
     monospace;
 }
 
-.img_random {
-  /* background: url(https://source.unsplash.com/random) no-repeat;
-  background-size: 100%; */
-  width: 500px;
-  height: auto;
+button {
+  border-radius: 100px;
+  padding: 10px;
+  margin: 40px 30px;
+  background: rgb(243, 101, 172);
+  border: 2px solid rgb(243, 101, 172);
+}
+
+button:hover {
+  background: rgb(255, 172, 214);
+  cursor: pointer;
 }
