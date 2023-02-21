@@ -6,6 +6,19 @@ import axios from 'axios'
 const Weather = () => {
     const [data, setData] = useState({})
     const [data_apod, setData_apod] = useState({})
+    const [location, setLocation] = useState('')
+
+    const url_search = `https://api.openweathermap.org/data/2.5/weather?q=${location}&lang=ru&units=metric&appid=31648dad49367c95342999f2b9feb443`
+
+    const searchLocation = (event) => {
+        if (event.key === 'Enter') {
+            axios.get(url_search).then((response) => {
+                setData(response.data)
+                console.log(response.data)
+            })
+            setLocation('')
+        }
+    }
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=Tomsk&lang=ru&units=metric&appid=31648dad49367c95342999f2b9feb443`
 
@@ -87,12 +100,22 @@ const Weather = () => {
                     <br />
                     <br />
                     <div className={style.weather_block}>
+                        <div className={`${superstyle.center} ${superstyle.align_center}`}>
+                            <div>
+                                <input
+                                    value={location}
+                                    onChange={event => setLocation(event.target.value)}
+                                    onKeyPress={searchLocation}
+                                    placeholder='Введите город ...'
+                                    type="text" />
+                            </div>
+                        </div>
                         <div className={style.flex_weather_blocks}>
                             <div>
                                 <div className={style.span_date}>
                                     <span className='date'></span><span>.</span><span className='month'></span><span>.</span><span className='year'></span>
                                 </div>
-                                <br />
+                                <span>Томское время:</span>
                                 <div className={style.span_time}>
                                     <span className="h"></span><span>:</span><span className="m"></span><span>:</span><span className="s"></span>
                                 </div>
@@ -103,7 +126,7 @@ const Weather = () => {
                             </div>
                             <div className={style.last_weather_block}>
                                 <span className={style.weather_sity}>{data.name}</span>
-                                <br />
+                                <br /><br />
                                 <span className={style.weather_temp}>{data.main ? data.main.temp.toFixed() + '°C' : null}</span>
                             </div>
                         </div>
