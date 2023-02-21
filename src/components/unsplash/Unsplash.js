@@ -1,14 +1,14 @@
 // импортируем реакт userState
 import React, { useState } from "react"
 import style from './unsplash.module.css'
+import superstyle from '../../index.css'
 
 
-const Unsplash = (props) => {
+const Unsplash = () => {
   //переменные для стейтов
   const [active, isActive] = useState(false)
   const [image, image_set] = useState("")
   const [result, set_for_result] = useState([])
-
 
   //пишем асинхрон для вывода изображений по api
   const async_unsplash = async () => {
@@ -22,70 +22,91 @@ const Unsplash = (props) => {
     set_for_result(result_img)
   }
 
-  //переменная функция для кнопки поиска
+  // правило для поиска через Enter
+  const open_enter = (e) => {
+    if (e.key === 'Enter') {
+      async_unsplash()
+      isActive(true)
+    }
+  }
+
+  //переменная функция для кнопки поиска c условиями
   const To_find = () => {
-    isActive(!active)
     async_unsplash()
+    // если что-то введено, то тогда выдаем список
+    if (image == 0) {
+      isActive(false)
+    } else {
+      isActive(true)
+    }
     image_set("")
   };
 
   //тело
   return (
-    <section>
-      <div className='container center align_center'>
-        <div className="">
-          <input
-            className=""
-            type="text"
-            placeholder="Поиск..."
-            value={image}
-            onChange={(e) => image_set(e.target.value)}
-          />
-          <button
-            type="submit"
-            onClick={To_find}
-            className=""
-          >
-            Search
-          </button>
-        </div>
+    <div className={style.fon_unsplash}>
+      <section>
+        <div className={`${superstyle.container} ${superstyle.center} ${superstyle.align_center}`}>
+          <div className="">
+            <input
+              className=""
+              type="text"
+              placeholder="Поиск..."
+              value={image}
+              onChange={(e) => image_set(e.target.value)}
+              onKeyPress={open_enter}
+            />
+            <button
+              type="submit"
+              onClick={To_find}
+              className=""
+            >
+              Search
+            </button>
+          </div>
 
-        {/*рандом фото*/}
-        <div className={style.div_img_random}>
-          <img className={style.img_random} src="https://source.unsplash.com/random" alt="img_random" />
-        </div>
+          {/*рандом фото*/}
+          <div className={style.div_img_random}>
+            <img className={style.img_random} src="https://source.unsplash.com/random" alt="img_random" />
+          </div>
 
-        {/*плитка сёрч*/}
-        <div className={active ? style.img_tofind_block : [style.img_tofind_block, style.img_tofind_none]}>
-          <div className={style.column_gap}>
-            {
-              result.map((val) => {
-                return (
-                  <div className={[style.gallery_container]}>
-                    <div className={style.gallery_item}>
-                      <img
-                        key={val.id}
-                        className=""
-                        src={val.urls.small}
-                        alt="val.alt_description"
-                      />
-                      <div className={style.val_p}>
-                        <p className={style.font_gradient}>
-                          <b>Автор: </b>{val.user.username}
-                          <br />
-                          <b>Описание: </b>{val.description}
-                          <br /><br />
-                        </p>
+          {/*плитка сёрч
+          делаем блок видимым, когда нажмем кнопку*/}
+          <div className={active ? style.img_tofind_block : `${style.img_tofind_block} ${style.img_tofind_none}`}>
+            <div className={style.column_gap}>
+              {
+                result.map((val, key) => {
+                  return (
+                    // eslint-disable-next-line react/jsx-key
+                    <div className={style.gallery_container} key={key}>
+                      <div className={style.gallery_item}>
+                        <img
+                          className=""
+                          src={val.urls.small}
+                          alt="val.alt_description"
+                        />
+                        <div className={style.val_p}>
+                          <p className={style.font_gradient}>
+                            <b>Автор: </b>{val.user.username}
+                            <br />
+                            <b>Описание: </b>{val.description}
+                            <br />
+                            <br />
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )
-              })
-            }
+                  )
+                })
+              }
+            </div>
+            <br />
           </div>
         </div>
-      </div>
-    </section>
+        <br />
+        <br />
+      </section>
+    </div>
   )
 }
 

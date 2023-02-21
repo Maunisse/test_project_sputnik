@@ -1,0 +1,91 @@
+.fon_1 {
+    background: url(../../../public/img/19badb12273cb714aa923b08ebd9d414.webp) no-repeat center;
+}
+
+.fon_2 {
+    background: url(../../../public/img/1633871004_126-p-kofe-doma-krasivie-foto-135.webp) no-repeat center;
+}
+
+.fon_3 {
+    background: url(../../../public/img/6a56ebf3d7e23ff8cb7b1e4bc459ac1e.webp) no-repeat center;
+}
+
+.fon_4 {
+    background: url(../../../public/img/1662511933_4-gamerwall-pro-p-uyutnii-vecher-s-kotom-krasivo-6.webp) no-repeat center;
+}
+
+/*все основные background должны идти первыми!*/
+.fon {
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    margin: 0;
+}
+
+.weather_block {
+    background: rgba(7, 59, 83, 0.5);
+    padding: 50px;
+    border-radius: 50px;
+}
+
+.fon span {
+    color: white
+}
+
+.span_date span {
+    font-size: 40px;
+}
+
+.span_time span {
+    font-size: 30px;
+}
+
+.flex_weather_blocks {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.flex_weather_blocks>div {
+    flex: 1 1 0;
+    text-align: center;
+}
+
+.icon_block {
+    transform: translateY(-10px);
+}
+
+.weather_sity {
+    font-size: 30px;
+}
+
+.weather_temp {
+    font-size: 50px;
+}
+
+.last_weather_block {
+    padding: 10px;
+}
+
+.nasa_block {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+}
+
+.nasa_block>div {
+    flex: 1 1 0;
+    min-width: 450px;
+}
+
+.nasa_block img {
+    width: 100%;
+}
