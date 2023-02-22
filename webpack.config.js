@@ -4,9 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { SourceMapDevToolPlugin } = require("webpack");
+// const ImageminPlugin = require("imagemin-webpack-plugin")
 
-//в какой среде разработки: dev или prod
+// переменная чтобы писать условия в какой среде разработки выполняется условие: dev или prod
 const production = process.env.NODE_ENV === 'production';
+const development = process.env.NODE_ENV === 'development';
 
 module.exports = {
     //путь откуда
@@ -34,17 +36,22 @@ module.exports = {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: [
-                    production ? MiniCssExtractPlugin.loader : 'style-loader',
                     {
-                        loader: "css-loader",
+                        loader: MiniCssExtractPlugin.loader,
                         options: {
-                            modules: true,
-                            sourceMap: !production
-                        }
-                    }
+                        },
+                    },
+                    'css-loader'
                 ]
             },
-
+            {
+                test: /\.(jpg|jpeg|png|webp)$/,
+                exclude: /node_modules/,
+                type: 'asset/resource',
+                generator: {
+                    filename: './img/[name][ext]'
+                }
+            }
         ],
     },
     // можно не дописывать окончания
@@ -74,12 +81,10 @@ module.exports = {
     devServer: {
         historyApiFallback: true,
         port: 3000,
-        hot: true,
+        hot: development,
     },
     performance: {
         maxEntrypointSize: 512000,
         maxAssetSize: 512000
-    },
-    mode: production ? 'production' : 'development'
-
+    }
 };
