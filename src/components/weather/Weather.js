@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import style from './weather.module.css'
-import superstyle from '../../index.css'
+import superstyle from '../../index.module.css'
 import axios from 'axios'
 
 const Weather = () => {

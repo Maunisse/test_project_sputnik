@@ -1,6 +1,6 @@
 import { React } from "react"
 import './header.module.css'
-import superstyle from '../../index.css'
+import superstyle from '../../index.module.css'
 
 const Header = () => (
     <header>

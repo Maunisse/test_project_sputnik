@@ -18,5 +18,5 @@ app.use(express.static(path.join(__dirname, '../dist')));
 
 /* Server Initialization */
 app.get('/', (req, res) => res.sendFile('index.html'));
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Server initialized on: http://localhost:${port} // ${new Date()}`));

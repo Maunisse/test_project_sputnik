@@ -1,7 +1,7 @@
 // импортируем реакт userState
 import React, { useState } from "react"
 import style from './unsplash.module.css'
-import superstyle from '../../index.css'
+import superstyle from '../../index.module.css'
 
 
 const Unsplash = () => {

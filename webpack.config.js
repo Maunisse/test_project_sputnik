@@ -36,7 +36,7 @@ module.exports = {
                 use: [
                     production ? MiniCssExtractPlugin.loader : 'style-loader',
                     {
-                        loader: 'css-loader',
+                        loader: "css-loader",
                         options: {
                             modules: true,
                             sourceMap: !production
@@ -73,7 +73,7 @@ module.exports = {
     //параметры для сервера
     devServer: {
         historyApiFallback: true,
-        port: 3001,
+        port: 3000,
         hot: true,
     },
     performance: {
